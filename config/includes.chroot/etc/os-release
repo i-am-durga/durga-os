@@ -1,0 +1,10 @@
+PRETTY_NAME="Durga OS 1.0 LTS"
+NAME="Durga OS"
+VERSION_ID="1.0"
+VERSION="1.0 LTS (Bookworm-based)"
+VERSION_CODENAME=bookworm
+ID=durgaos
+ID_LIKE=debian
+HOME_URL="https://durgaos.org"
+SUPPORT_URL="https://durgaos.org/support"
+BUG_REPORT_URL="https://durgaos.org/bugs"

@@ -1,0 +1,23 @@
+[General]
+ColorScheme=BreezeDark
+Name=Breeze Dark (Durga OS Accent)
+
+[Colors:Selection]
+Background=229,91,43
+Foreground=255,255,255
+
+[Colors:View]
+Background=24,25,32
+Foreground=230,230,230
+
+[Colors:Window]
+Background=18,19,25
+Foreground=235,235,235
+
+[Colors:Button]
+Background=32,34,44
+Foreground=240,240,240
+
+[KDE]
+AccentColor=229,91,43
+SingleClick=false

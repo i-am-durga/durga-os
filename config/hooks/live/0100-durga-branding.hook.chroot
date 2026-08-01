@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -e
+
+echo "Applying Durga OS Branding & Custom GRUB Configuration..."
+
+# Ensure Durga OS hostname
+echo "durga-os" > /etc/hostname
+
+# Custom GRUB Distro Name
+if [ -f /etc/default/grub ]; then
+    sed -i 's/GRUB_DISTRIBUTOR=.*/GRUB_DISTRIBUTOR="Durga OS"/' /etc/default/grub
+    sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash apparmor=1 security=apparmor zswap.enabled=1"/' /etc/default/grub
+fi
+
+# Enable Durga Firstboot systemd service
+systemctl enable durga-firstboot.service || true

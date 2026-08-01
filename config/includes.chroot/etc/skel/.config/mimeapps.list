@@ -1,0 +1,7 @@
+[Default Applications]
+application/x-ms-dos-executable=wine.desktop;com.usebottles.bottles.desktop;
+application/x-msi=wine.desktop;
+application/x-executable=wine.desktop;
+
+[Added Associations]
+application/x-ms-dos-executable=wine.desktop;com.usebottles.bottles.desktop;

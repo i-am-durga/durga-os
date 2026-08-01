@@ -1,0 +1,11 @@
+[Daemon]
+Autolock=false
+LockGrace=5
+Timeout=10
+
+[Greeter][Wallpaper][org.kde.image][General]
+Image=file:///usr/share/wallpapers/DurgaOS-Himalaya/contents/images/boudhanath_dusk.jpg
+FillMode=2
+
+[Greeter][LnF]
+Theme=org.kde.breeze.desktop

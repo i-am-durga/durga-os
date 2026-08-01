@@ -1,0 +1,12 @@
+[Unit]
+Description=Durga OS First Boot Initialization
+After=network.target local-fs.target
+ConditionPathExists=!/var/lib/durga-firstboot.done
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/durga-firstboot.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

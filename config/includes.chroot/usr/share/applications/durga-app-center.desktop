@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Durga OS App Center
+Comment=Unified App Center for Linux, Windows, and Android Applications
+Exec=/usr/local/bin/durga-app-center
+Icon=system-software-install
+Terminal=false
+Type=Application
+Categories=System;Settings;PM;
+Keywords=apps;wine;android;flatpak;software;

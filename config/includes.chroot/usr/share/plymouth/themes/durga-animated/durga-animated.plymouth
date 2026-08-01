@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Durga OS Animated
+Description=Smooth animated Plymouth boot theme for Durga OS
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/durga-animated
+ScriptFile=/usr/share/plymouth/themes/durga-animated/durga-animated.script

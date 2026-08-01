@@ -1,0 +1,70 @@
+# Durga OS Plymouth Animation Script
+
+# Screen dimensions
+screen.w = Window.GetWidth();
+screen.h = Window.GetHeight();
+
+# Load Logo Image
+logo.image = Image("durga-logo.png");
+logo.sprite = Sprite();
+
+# Center Logo
+logo.x = (screen.w - logo.image.GetWidth()) / 2;
+logo.y = (screen.h - logo.image.GetHeight()) / 2 - 40;
+logo.sprite.SetX(logo.x);
+logo.sprite.SetY(logo.y);
+logo.sprite.SetOpacity(0.0);
+
+# Progress Bar Setup
+progress_bar.width = 300;
+progress_bar.height = 6;
+progress_bar.x = (screen.w - progress_bar.width) / 2;
+progress_bar.y = logo.y + logo.image.GetHeight() + 50;
+
+progress_bg.image = Image.CreateRectangle(progress_bar.width, progress_bar.height, 0.15, 0.15, 0.25, 0.8);
+progress_bg.sprite = Sprite(progress_bg.image);
+progress_bg.sprite.SetX(progress_bar.x);
+progress_bg.sprite.SetY(progress_bar.y);
+progress_bg.sprite.SetOpacity(0.0);
+
+# Animation States
+glow_angle = 0;
+fade_in_time = 0;
+
+fun refresh_callback () {
+    # Fade in logo and progress bar over 1 second (approx 50 frames)
+    if (fade_in_time < 1.0) {
+        fade_in_time += 0.02;
+        logo.sprite.SetOpacity(fade_in_time);
+        progress_bg.sprite.SetOpacity(fade_in_time);
+    } else {
+        logo.sprite.SetOpacity(1.0);
+        progress_bg.sprite.SetOpacity(1.0);
+    }
+
+    # Pulse / Glow effect
+    glow_angle += 0.05;
+    opacity_val = 0.85 + (Math.Sin(glow_angle) * 0.15);
+    logo.sprite.SetOpacity(opacity_val);
+
+    # Get Boot Progress (0.0 to 1.0)
+    progress = Plymouth.GetMode() == "boot" ? Plymouth.GetBootProgress() : 0.5;
+    if (!progress) progress = 0.1;
+
+    # Draw active progress fill
+    fill_w = Math.Max(4, Math.Min(progress_bar.width, progress_bar.width * progress));
+    progress_fill.image = Image.CreateRectangle(fill_w, progress_bar.height, 0.0, 0.7, 1.0, 1.0);
+    progress_fill.sprite = Sprite(progress_fill.image);
+    progress_fill.sprite.SetX(progress_bar.x);
+    progress_fill.sprite.SetY(progress_bar.y);
+}
+
+Plymouth.SetRefreshFunction(refresh_callback);
+
+# Quit callback for smooth crossfade to SDDM
+fun quit_callback () {
+    logo.sprite.SetOpacity(0.0);
+    progress_bg.sprite.SetOpacity(0.0);
+}
+
+Plymouth.SetQuitFunction(quit_callback);

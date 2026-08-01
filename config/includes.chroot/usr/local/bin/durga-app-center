@@ -1,0 +1,39 @@
+#!/bin/bash
+# Durga OS Unified App Center / Launcher
+
+CHOICE=$(zenity --list --title="Durga OS App Center" \
+  --column="Category" --column="Description" \
+  "Linux Apps" "Discover & install native Debian & Flatpak applications" \
+  "Windows Apps" "Run Windows .exe files via Wine & Bottles" \
+  "Android Apps" "Launch Waydroid Android App Container" \
+  "System Settings" "Open KDE System Settings" \
+  --height=350 --width=500)
+
+case "$CHOICE" in
+  "Linux Apps")
+    if command -v plasma-discover &>/dev/null; then
+      plasma-discover &
+    else
+      zenity --info --text="Discover software center is opening..."
+    fi
+    ;;
+  "Windows Apps")
+    if command -v bottles &>/dev/null; then
+      bottles &
+    elif flatpak run com.usebottles.bottles &>/dev/null; then
+      flatpak run com.usebottles.bottles &
+    else
+      winecfg &
+    fi
+    ;;
+  "Android Apps")
+    if command -v waydroid &>/dev/null; then
+      waydroid show-full-ui &
+    else
+      zenity --error --text="Waydroid is initializing. Please wait a moment and try again."
+    fi
+    ;;
+  "System Settings")
+    systemsettings &
+    ;;
+esac

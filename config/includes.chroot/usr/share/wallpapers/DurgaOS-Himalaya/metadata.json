@@ -1,0 +1,18 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "info@durgaos.org",
+                "Name": "Durga OS Design Team"
+            }
+        ],
+        "Description": "Nepal Visual Identity Wallpapers featuring Everest, Phewa Lake, and Boudhanath Stupa",
+        "Id": "DurgaOS-Himalaya",
+        "License": "CC-BY-SA-4.0",
+        "Name": "Durga OS — Himalaya Collection",
+        "ServiceTypes": [
+            "Plasma/Wallpaper"
+        ],
+        "Version": "1.0"
+    }
+}

@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e
+
+echo "Enforcing Linux-Grade Security & Systemd Optimization..."
+
+# Enable AppArmor Profiles
+if command -v systemctl &>/dev/null; then
+    systemctl enable apparmor || true
+    systemctl enable ufw || true
+fi
+
+# Optimization: Mask slow / non-essential services for fast boot
+systemctl mask NetworkManager-wait-online.service || true
+systemctl mask systemd-networkd-wait-online.service || true
+systemctl mask modemmanager.service || true

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -e
+
+echo "Setting default Plymouth Theme to durga-animated..."
+
+if command -v plymouth-set-default-theme &>/dev/null; then
+    plymouth-set-default-theme -R durga-animated || true
+fi
+
+# Update initramfs to embed Plymouth theme
+if command -v update-initramfs &>/dev/null; then
+    update-initramfs -u -k all || true
+fi

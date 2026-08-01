@@ -1,0 +1,51 @@
+# Live System Base & Kernel
+live-boot
+live-config
+live-config-systemd
+linux-image-amd64
+linux-headers-amd64
+firmware-linux-free
+firmware-linux-nonfree
+
+# Desktop Environment - KDE Plasma (Windows 11-like setup)
+plasma-desktop
+plasma-workspace
+sddm
+sddm-theme-breeze
+kwin-x11
+kwin-wayland
+kwin-style-breeze
+kde-config-gtk-style
+kscreen
+plasma-nm
+plasma-pa
+powerdevil
+dolphin
+konsole
+kde-spectacle
+ark
+gwenview
+
+# Display & Animations
+plymouth
+plymouth-themes
+plymouth-x11
+libpixman-1-0
+
+# Installer
+calamares
+calamares-settings-debian
+partitionmanager
+
+# Core Utilities & System Management
+sudo
+curl
+wget
+git
+zstd
+zram-tools
+neofetch
+lsb-release
+network-manager
+dialog
+polkit-kde-agent-1

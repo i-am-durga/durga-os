@@ -1,0 +1,16 @@
+# Durga OS Build Artifacts & Large Files
+*.iso
+*.hybrid.iso
+.build/
+binary/
+chroot/
+chroot.*/
+cache/
+live-image*
+*.vdi
+*.vmdk
+
+# OS & Editor Files
+.DS_Store
+*.swp
+*~

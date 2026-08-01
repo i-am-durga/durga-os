@@ -1,0 +1,19 @@
+# Windows .exe Support (Wine & Tools)
+wine
+wine64
+winetricks
+cabextract
+p7zip-full
+zenity
+
+# Android App Support Dependencies
+lxc
+dnsmasq-base
+iptables
+ca-certificates
+curl
+
+# Native Packaging & App Stores
+flatpak
+plasma-discover-backend-flatpak
+snapd

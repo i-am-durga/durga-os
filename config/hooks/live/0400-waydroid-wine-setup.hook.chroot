@@ -1,0 +1,20 @@
+#!/bin/sh
+
+set -e
+
+echo "Installing Waydroid from official repository..."
+
+# Add Waydroid APT repository
+curl -s https://repo.waydro.id | bash || true
+
+# Install Waydroid if repo script added it
+apt-get update -y || true
+apt-get install -y waydroid || true
+
+echo "Configuring Waydroid binderfs fstab entry..."
+
+if ! grep -q "binder" /etc/fstab; then
+    echo "binder /dev/binderfs binder optional,nofail 0 0" >> /etc/fstab
+fi
+
+mkdir -p /dev/binderfs

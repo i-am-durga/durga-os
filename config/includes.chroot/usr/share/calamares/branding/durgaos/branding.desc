@@ -1,0 +1,25 @@
+---
+componentName:  durgaos
+welcomeStyleCalamares: true
+welcomeExpandingLogo: true
+
+strings:
+    productName:         Durga OS
+    shortProductName:    Durga
+    version:             1.0 LTS
+    shortVersion:        1.0
+    versionedName:       Durga OS 1.0 LTS
+    shortVersionedName:  Durga OS 1.0
+    bootloaderEntryName: Durga OS
+
+images:
+    productIcon:         "durga-logo.png"
+    productLogo:         "durga-logo.png"
+
+slideshow:               "show.qml"
+
+style:
+    sidebarBackground:    "#181920"
+    sidebarText:          "#FFFFFF"
+    sidebarTextSelect:    "#00D2FF"
+    sidebarTextHighlight: "#00E5FF"

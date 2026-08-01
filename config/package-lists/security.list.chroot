@@ -1,0 +1,8 @@
+# Linux Security & Hardening
+apparmor
+apparmor-profiles
+apparmor-utils
+ufw
+unattended-upgrades
+fail2ban
+auditd
