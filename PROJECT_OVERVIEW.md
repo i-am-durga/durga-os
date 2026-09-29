@@ -73,28 +73,46 @@ Underneath the modern interface, Durga OS relies on Debian Bookworm’s rock-sol
 
 ## 📁 Repository File Map
 
-| File Path | Description |
-| :--- | :--- |
-| [`build-iso.sh`](file:///home/durga/Desktop/ai%20project/durga-os-build/build-iso.sh) | Main script to build the bootable `durgaos-amd64.iso` image. |
-| [`test-iso.sh`](file:///home/durga/Desktop/ai%20project/durga-os-build/test-iso.sh) | Script to launch and test the ISO in QEMU with KVM acceleration. |
-| [`config/package-lists/desktop.list.chroot`](file:///home/durga/Desktop/ai%20project/durga-os-build/config/package-lists/desktop.list.chroot) | Package list for KDE Plasma, Plymouth, Calamares installer. |
-| [`config/package-lists/wine-android.list.chroot`](file:///home/durga/Desktop/ai%20project/durga-os-build/config/package-lists/wine-android.list.chroot) | Package list for Wine, Waydroid, Flatpak, and Snap support. |
-| [`config/package-lists/security.list.chroot`](file:///home/durga/Desktop/ai%20project/durga-os-build/config/package-lists/security.list.chroot) | Package list for firewall and security tools. |
-| [`config/hooks/live/`](file:///home/durga/Desktop/ai%20project/durga-os-build/config/hooks/live/) | Automated build scripts for branding, security, Plymouth, and Waydroid setup. |
-| [`config/includes.chroot/usr/local/bin/durga-app-center`](file:///home/durga/Desktop/ai%20project/durga-os-build/config/includes.chroot/usr/local/bin/durga-app-center) | Custom Unified App Center launcher. |
-| [`config/includes.chroot/usr/local/bin/durga-firstboot.sh`](file:///home/durga/Desktop/ai%20project/durga-os-build/config/includes.chroot/usr/local/bin/durga-firstboot.sh) | Post-install system setup service script. |
+| File Path | Host Platform | Description |
+| :--- | :--- | :--- |
+| [`build-iso.sh`](build-iso.sh) | Linux / WSL | Main script to build the bootable `durgaos-amd64.iso` image. |
+| [`build-iso-windows.bat`](build-iso-windows.bat) / [`.ps1`](build-iso-windows.ps1) | Windows | Automates building the ISO on Windows using WSL 2. |
+| [`build-iso-docker.bat`](build-iso-docker.bat) | Windows / Docker | Containerized ISO build using Docker Desktop. |
+| [`run-virtualbox.bat`](run-virtualbox.bat) / [`.ps1`](run-virtualbox.ps1) | Windows | Auto-configures and runs the ISO in Oracle VirtualBox. |
+| [`test-iso.bat`](test-iso.bat) / [`.ps1`](test-iso.ps1) | Windows | Tests the ISO in QEMU with WHPX hardware acceleration. |
+| [`run-virtualbox.sh`](run-virtualbox.sh) | Linux | Launches the ISO in VirtualBox on Linux hosts. |
+| [`test-iso.sh`](test-iso.sh) | Linux | Script to launch and test the ISO in QEMU with KVM acceleration. |
+| [`config/package-lists/desktop.list.chroot`](config/package-lists/desktop.list.chroot) | Common | Package list for KDE Plasma, Plymouth, Calamares installer. |
+| [`config/package-lists/wine-android.list.chroot`](config/package-lists/wine-android.list.chroot) | Common | Package list for Wine, Waydroid, Flatpak, and Snap support. |
+| [`config/package-lists/security.list.chroot`](config/package-lists/security.list.chroot) | Common | Package list for firewall and security tools. |
+| [`config/hooks/live/`](config/hooks/live/) | Common | Automated build scripts for branding, security, Plymouth, and Waydroid setup. |
+| [`config/includes.chroot/usr/local/bin/durga-app-center`](config/includes.chroot/usr/local/bin/durga-app-center) | Common | Custom Unified App Center launcher. |
+| [`config/includes.chroot/usr/local/bin/durga-firstboot.sh`](config/includes.chroot/usr/local/bin/durga-firstboot.sh) | Common | Post-install system setup service script. |
 
 ---
 
-## ⚡ Quick Start Commands for Your Shift
+## ⚡ Quick Start Commands
 
+### On Windows
+```powershell
+# 1. Run in Oracle VirtualBox:
+.\run-virtualbox.ps1       # Or double-click run-virtualbox.bat
+
+# 2. Test in QEMU:
+.\test-iso.ps1             # Or double-click test-iso.bat
+
+# 3. Build ISO via WSL 2:
+.\build-iso-windows.ps1    # Or double-click build-iso-windows.bat
+```
+
+### On Linux
 ```bash
-# 1. Navigate to the project directory
-cd "/home/durga/Desktop/ai project/durga-os-build"
-
-# 2. Build the Durga OS ISO (requires sudo)
+# 1. Build the Durga OS ISO (requires sudo)
 sudo ./build-iso.sh
 
-# 3. Test the ISO in QEMU virtual machine
+# 2. Run in VirtualBox
+./run-virtualbox.sh
+
+# 3. Test the ISO in QEMU
 ./test-iso.sh
 ```

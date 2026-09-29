@@ -1,0 +1,20 @@
+FROM debian:bookworm
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    live-build \
+    rsync \
+    debootstrap \
+    ca-certificates \
+    gnupg2 \
+    xorriso \
+    isolinux \
+    syslinux \
+    squashfs-tools \
+    dosfstools \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /durga-os-build
+
+CMD ["bash", "-c", "rsync -av --exclude='*.iso' --exclude='binary' --exclude='chroot' --exclude='.build' /workspace/ /durga-os-build/ && cd /durga-os-build && ./build-iso.sh && cp durgaos-amd64.iso /workspace/"]

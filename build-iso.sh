@@ -2,8 +2,9 @@
 
 set -e
 
-WORKSPACE_DIR="/home/durga/Desktop/ai project/durga-os-build"
-TARGET_DIR="/home/durga/durga-os-build"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+WORKSPACE_DIR="${WORKSPACE_DIR:-$SCRIPT_DIR}"
+TARGET_DIR="${TARGET_DIR:-/tmp/durga-os-build}"
 
 echo "======================================================"
 echo "    BUILDING DURGA OS LIVE INSTALLABLE ISO SYSTEM    "
@@ -15,9 +16,10 @@ if [ "$EUID" -ne 0 ]; then
     exit 1
 fi
 
-# live-build does not support directories with spaces
-if [[ "${PWD}" == *" "* ]]; then
-    echo "Directory path contains spaces. Syncing build files to ${TARGET_DIR}..."
+# live-build does not support directories with spaces or NTFS /mnt/ mounts
+if [[ "${PWD}" == *" "* ]] || [[ "${PWD}" == /mnt/* ]]; then
+    echo "Directory path contains spaces or is on a 9p/NTFS mount (/mnt/*)."
+    echo "Syncing build files to native Linux ext4 path: ${TARGET_DIR}..."
     mkdir -p "${TARGET_DIR}"
     rsync -av --delete \
         --exclude='*.iso' \
@@ -29,9 +31,9 @@ if [[ "${PWD}" == *" "* ]]; then
         --exclude='live-image*' \
         "${WORKSPACE_DIR}/" "${TARGET_DIR}/"
     cd "${TARGET_DIR}"
+else
+    TARGET_DIR="${PWD}"
 fi
-
-cd "${TARGET_DIR}"
 
 if ! command -v lb &>/dev/null; then
     echo "ERROR: live-build is not installed. Run 'sudo apt-get install live-build' first."
