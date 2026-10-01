@@ -47,7 +47,7 @@ if (-not $ChosenDistro) {
 Write-Host "[INFO] Using WSL Distribution: $ChosenDistro" -ForegroundColor Green
 
 # Convert Windows path to WSL path
-$WslSourcePath = wsl.exe -d $ChosenDistro wslpath -u "$ScriptDir".Replace("\", "/")
+$WslSourcePath = wsl.exe -d $ChosenDistro wslpath -u "`"$ScriptDir`""
 $WslSourcePath = $WslSourcePath.Trim()
 
 Write-Host "[INFO] Windows Workspace in WSL: $WslSourcePath" -ForegroundColor Green
@@ -92,7 +92,7 @@ Write-Host "`n[STARTING BUILD] Executing live-build inside WSL ($ChosenDistro)..
 $TempWslScript = [System.IO.Path]::GetTempFileName() + ".sh"
 [System.IO.File]::WriteAllText($TempWslScript, $WslScript.Replace("`r`n", "`n"))
 
-$WslTempScriptPath = wsl.exe -d $ChosenDistro wslpath -u "$TempWslScript".Replace("\", "/")
+$WslTempScriptPath = wsl.exe -d $ChosenDistro wslpath -u "`"$TempWslScript`""
 $WslTempScriptPath = $WslTempScriptPath.Trim()
 
 wsl.exe -d $ChosenDistro bash "$WslTempScriptPath"
